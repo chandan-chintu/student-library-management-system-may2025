@@ -3,6 +3,8 @@ package com.example.student_library_management_system.model;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Table(name = "author")
 @Entity
 public class Author {
@@ -26,6 +28,9 @@ public class Author {
 
     @Column(name="rating", nullable = false)
     private double rating;
+
+    @OneToMany(mappedBy = "author")
+    private List<Book> bookByAuthor;
 
     public int getId() {
         return id;

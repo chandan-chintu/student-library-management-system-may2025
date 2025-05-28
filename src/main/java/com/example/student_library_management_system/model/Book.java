@@ -4,6 +4,8 @@ package com.example.student_library_management_system.model;
 import com.example.student_library_management_system.enums.Category;
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Table(name = "book")
 @Entity
 public class Book {
@@ -34,6 +36,17 @@ public class Book {
     @Enumerated(value = EnumType.STRING)
     @Column(name="category", nullable = false)
     private Category category;
+
+    @ManyToOne // many books written by one author
+    @JoinColumn
+    private Author author;
+
+    @ManyToOne
+    @JoinColumn
+    private Card card;
+
+    @OneToMany(mappedBy = "book")
+    private List<Transaction> transactionList;
 
     public int getId() {
         return id;
