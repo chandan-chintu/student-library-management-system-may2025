@@ -79,4 +79,12 @@ public class Author {
     public void setRating(double rating) {
         this.rating = rating;
     }
+
+    public List<Book> getBookByAuthor() {
+        return bookByAuthor;
+    }
+
+    public void setBookByAuthor(List<Book> bookByAuthor) {
+        this.bookByAuthor = bookByAuthor;
+    }
 }

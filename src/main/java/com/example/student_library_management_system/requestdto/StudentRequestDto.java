@@ -1,50 +1,17 @@
-package com.example.student_library_management_system.model;
+package com.example.student_library_management_system.requestdto;
 
-import jakarta.persistence.*;
+public class StudentRequestDto {
 
-@Table(name = "student")
-@Entity
-public class Student {
+    // request dto - request data transfer object - it is used to take input fields or request fields from postman or front end
 
-    @Id
-    @Column(name="id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-
-    @Column(name="name", nullable = false)
     private String name;
-
-    @Column(name="email", nullable = false, unique = true)
     private String email;
-
-    @Column(name="mobile", nullable = false)
-    private String mobile; //"+91-8496979885"
-
-    @Column(name="dept", nullable = false)
+    private String mobile;
     private String dept;
-
-    @Column(name="sem", nullable = false)
     private String sem;
-
-    @Column(name="gender", nullable = false)
     private String gender;
-
-    @Column(name="address", nullable = false)
     private String address;
-
-    @Column(name="dob", nullable = false)
-    private String dob; //12-12-1998
-
-    @OneToOne(mappedBy = "student", cascade = CascadeType.ALL)
-    private Card card;
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
+    private String dob;
 
     public String getName() {
         return name;
@@ -108,13 +75,5 @@ public class Student {
 
     public void setDob(String dob) {
         this.dob = dob;
-    }
-
-    public Card getCard() {
-        return card;
-    }
-
-    public void setCard(Card card) {
-        this.card = card;
     }
 }
