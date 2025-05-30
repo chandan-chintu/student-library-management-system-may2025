@@ -1,5 +1,6 @@
 package com.example.student_library_management_system.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 @Table(name = "student")
@@ -35,6 +36,7 @@ public class Student {
     @Column(name="dob", nullable = false)
     private String dob; //12-12-1998
 
+    @JsonManagedReference
     @OneToOne(mappedBy = "student", cascade = CascadeType.ALL)
     private Card card;
 
