@@ -18,19 +18,34 @@ public class StudentController {
 
     @PostMapping("/save")
     public String saveStudent(@RequestBody StudentRequestDto studentRequestDto){
-        String response = studentService.saveStudent(studentRequestDto);
-        return response;
+        try {
+            String response = studentService.saveStudent(studentRequestDto);
+            return response;
+        }catch (Exception e){
+            return "Exception occurred : "+e.getMessage();
+        }
     }
 
     @GetMapping("/findById/{id}")
     public Student findStudentById(@PathVariable int id){
-        Student student = studentService.getStudentById(id);
-        return student;
+        try {
+            Student student = studentService.getStudentById(id);
+            return student;
+        }catch (Exception e){
+            System.out.println("Exception occured : "+e.getMessage());
+            return null;
+        }
     }
 
     @GetMapping("/findAll")
     public List<Student> findAllStudents(){
         List<Student> studentList = studentService.getAllStudents();
+        return studentList;
+    }
+
+    @GetMapping("/findAllPage")
+    public List<Student> findAllStudents(@RequestParam int pageNo, @RequestParam int pageSize){
+        List<Student> studentList = studentService.gtStudentBasedOnPage(pageNo, pageSize);
         return studentList;
     }
 
@@ -44,5 +59,17 @@ public class StudentController {
     public String deleteStudentById(@PathVariable int id){
         String response = studentService.deleteStudentById(id);
         return response;
+    }
+
+    @GetMapping("/findByEmail")
+    public Student findStudentByEmail(@RequestParam String email){
+            Student student = studentService.getStudentByEmail(email);
+            return student;
+    }
+
+    @GetMapping("/findByDept")
+    public List<Student> findStudentByDept(@RequestParam String dept){
+        List<Student> studentList = studentService.getStudentByDept(dept);
+        return studentList;
     }
 }
